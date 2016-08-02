@@ -1,5 +1,6 @@
-function Alarm(timeInput) {
+function Alarm(timeInput, snoozeInput) {
   this.time = timeInput;
+  this.snoozeInterval = snoozeInput;
 }
 
 Alarm.prototype.alarmTrigger = function() {
