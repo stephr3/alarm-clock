@@ -6,6 +6,7 @@ var uglify = require('gulp-uglify');
 var utilities = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
+var browserSync = require('browser-sync').create();
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -72,3 +73,27 @@ gulp.task('bowerJS', function () {
 });
 
 gulp.task('bower', ['bowerJS','bowerCSS']);
+
+gulp.task('serve', function(){
+  browserSync.init({
+    server: {
+      baseDir: "./",
+      index: "index.html"
+    }
+  });
+  gulp.watch(['bower.json'], ['bowerBuild']);
+  gulp.watch(['js/*.js'], ['jsBuild']);
+  gulp.watch(['*.html'], ['htmlBuild']);
+});
+
+gulp.task('htmlBuild', function() {
+  browserSync.reload();
+})
+
+gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
+  browserSync.reload();
+});
+
+gulp.task('bowerBuild', ['bower'], function(){
+  browserSync.reload();
+});
