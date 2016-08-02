@@ -1,5 +1,4 @@
 function Alarm(timeInput) {
-  // console.log(timeInput);
   this.time = timeInput;
 }
 

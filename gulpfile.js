@@ -88,7 +88,7 @@ gulp.task('serve', function(){
 
 gulp.task('htmlBuild', function() {
   browserSync.reload();
-})
+});
 
 gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
   browserSync.reload();
